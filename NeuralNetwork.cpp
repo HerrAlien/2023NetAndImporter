@@ -15,7 +15,7 @@ uint8_t NeuralNet::Predict(const Image& image) const
 
         std::vector<float> probabilities(vector.size());
         std::transform(vector.begin(), vector.end(), probabilities.begin(),
-            [&sumOfExponentials](float value) { return value / sumOfExponentials; }
+            [&sumOfExponentials](float value) { return std::exp(value) / sumOfExponentials; }
         );
 
         auto it = std::max_element(probabilities.begin(), probabilities.end());
